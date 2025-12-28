@@ -12,6 +12,8 @@ import {
 import Image from "next/image";
 import ResumeModal from "./ResumeModal";
 import { Button } from "@/components/ui/button";
+import { Slider } from "./ui/slider";
+import { cn } from "@/lib/utils";
 
 const BottomPlayer = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -59,7 +61,7 @@ const BottomPlayer = () => {
           </div>
         </div>
 
-        <div className="flex items-center flex-col">
+        <div className="flex flex-col gap-2 items-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
           {/* Top */}
           <div className="flex gap-4">
             <Button variant="ghost" size="icon" className="p-2">
@@ -76,7 +78,28 @@ const BottomPlayer = () => {
             </Button>
           </div>
           {/* Bottom */}
-          <div></div>
+          <div className="flex items-center w-full">
+            <Slider
+              step={1}
+              defaultValue={[50]}
+              max={100}
+              className={cn(
+                "w-full cursor-pointer group",
+
+                // Track (gray background)
+                "[&_[data-slot=slider-track]]:h-1 [&_[data-slot=slider-track]]:rounded-full [&_[data-slot=slider-track]]:bg-[#444]",
+
+                // Range (white -> green on hover)
+                "[&_[data-slot=slider-range]]:h-full [&_[data-slot=slider-range]]:bg-white [&_[data-slot=slider-range]]:rounded-full",
+                "group-hover:[&_[data-slot=slider-range]]:bg-[#1ED760]",
+
+                // Thumb (hidden until hover)
+                "[&_[data-slot=slider-thumb]]:h-3 [&_[data-slot=slider-thumb]]:w-3 [&_[data-slot=slider-thumb]]:bg-white",
+                "[&_[data-slot=slider-thumb]]:opacity-0 [&_[data-slot=slider-thumb]]:transition-opacity",
+                "group-hover:[&_[data-slot=slider-thumb]]:opacity-100"
+              )}
+            />
+          </div>
         </div>
 
         {/* Social Links (Controls) */}

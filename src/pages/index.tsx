@@ -1,6 +1,7 @@
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
 import { motion } from "framer-motion";
+import Typewriter from "typewriter-effect";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -39,14 +40,25 @@ export default function Home() {
             className="relative h-32 sm:w-48 sm:h-48 rounded-full overflow-hidden shadow-2xl flex-shrink-0 bg-[#333]"
           >
             <img
-              src="https://picsum.photos/400/400?random=profile"
+              src="/profile_pic.png"
               alt="Profile"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-110 transition-transform duration-300 hover:scale-150"
             />
           </motion.div>
-          <motion.div variants={itemVariants} className="flex-1 pb-4 text-center sm:text-left">
+          <motion.div
+            variants={itemVariants}
+            className="flex-1 pb-4 text-center sm:text-left"
+          >
             <p className="text-sm text-[#B3B3B3] mb-2">PROFILE</p>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">Neel Joshi</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6">
+              <Typewriter
+                options={{
+                  strings: ["Neel Joshi"],
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            </h1>
           </motion.div>
         </div>
       </div>

@@ -22,11 +22,13 @@ const Sidebar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`flex items-center gap-4 px-4 py-3 transition-colors rounded-md group ${
-                  isActive
-                    ? "text-white bg-[#1a1a1a]"
-                    : "text-[#B3B3B3] hover:text-white hover:bg-[#1a1a1a]"
-                }`}
+                className={`flex items-center gap-4 px-4 py-3 rounded-md group
+    transition-all duration-200 ease-out
+    ${
+      isActive
+        ? "text-white bg-[#1a1a1a]"
+        : "text-[#B3B3B3] hover:text-white hover:bg-[#1a1a1a] hover:translate-x-1"
+    }`}
               >
                 <Icon className="w-6 h-6 flex-shrink-0" />
                 <span className="font-medium">{item.label}</span>
