@@ -27,7 +27,7 @@ const BottomPlayer = () => {
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/neelbjoshi",
+      href: "https://linkedin.com/in/neelbjoshi",
       label: "LinkedIn",
       isLink: true,
     },

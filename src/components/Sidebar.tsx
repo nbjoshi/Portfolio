@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Home, Search, Library } from "lucide-react";
+import { Home, Search, Library, FolderCog } from "lucide-react";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -8,6 +8,7 @@ const Sidebar = () => {
     { icon: Home, label: "Home", href: "/" },
     { icon: Search, label: "Search", href: "/search" },
     { icon: Library, label: "Your Library", href: "/library" },
+    { icon: FolderCog, label: "Projects", href: "/projects" },
   ];
 
   return (
