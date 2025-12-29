@@ -1,21 +1,50 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Home, Search, Library, FolderCog } from "lucide-react";
+import {
+  Home,
+  Library,
+  FolderCog,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { useSidebar } from "@/contexts/SidebarContext";
+import { Button } from "@/components/ui/button";
 
 const Sidebar = () => {
   const router = useRouter();
+  const { isCollapsed, toggleSidebar } = useSidebar();
   const navItems = [
     { icon: Home, label: "Home", href: "/" },
-    { icon: Search, label: "Search", href: "/search" },
-    { icon: Library, label: "Your Library", href: "/library" },
-    { icon: FolderCog, label: "Projects", href: "/projects" },
+    { icon: FolderCog, label: "Experience", href: "/projects" },
+    { icon: Library, label: "My Library", href: "/library" },
   ];
 
   return (
-    <div className="fixed left-0 top-0 h-full w-64 bg-[#000000] z-40 flex flex-col">
-      <div className="p-6">
-        <h2 className="text-white text-2xl font-bold mb-8">Portfolio</h2>
-        <nav className="space-y-2">
+    <div
+      className={`fixed left-0 top-0 h-full bg-[#000000] z-40 flex flex-col transition-all duration-300 ${
+        isCollapsed ? "w-16" : "w-64"
+      }`}
+    >
+      <div className="p-6 flex flex-col h-full">
+        <div className="flex items-center justify-between mb-8">
+          {!isCollapsed && (
+            <h2 className="text-white text-2xl font-bold">Portfolio</h2>
+          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleSidebar}
+            className="ml-auto"
+            aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            {isCollapsed ? (
+              <ChevronRight className="w-5 h-5" />
+            ) : (
+              <ChevronLeft className="w-5 h-5" />
+            )}
+          </Button>
+        </div>
+        <nav className="space-y-2 flex-1">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = router.pathname === item.href;
@@ -23,8 +52,10 @@ const Sidebar = () => {
               <Link
                 key={item.label}
                 href={item.href}
+                title={isCollapsed ? item.label : undefined}
                 className={`flex items-center gap-4 px-4 py-3 rounded-md group
     transition-all duration-200 ease-out
+    ${isCollapsed ? "justify-center" : ""}
     ${
       isActive
         ? "text-white bg-[#1a1a1a]"
@@ -32,7 +63,11 @@ const Sidebar = () => {
     }`}
               >
                 <Icon className="w-6 h-6 flex-shrink-0" />
-                <span className="font-medium">{item.label}</span>
+                {!isCollapsed && (
+                  <span className="font-medium whitespace-nowrap">
+                    {item.label}
+                  </span>
+                )}
               </Link>
             );
           })}
