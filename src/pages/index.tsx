@@ -118,7 +118,6 @@ const generateBadge = (skill: string, path: string) => {
   );
 };
 
-
 export default function Home() {
   return (
     <motion.div
@@ -137,7 +136,7 @@ export default function Home() {
             <img
               src="/profile_pic.png"
               alt="Profile"
-              className="w-full h-full object-cover object-[60%_20%] scale-125 transition-transform duration-300 group-hover:scale-150"
+              className="w-full h-full object-cover object-[60%_20%] scale-150"
             />
           </motion.div>
 

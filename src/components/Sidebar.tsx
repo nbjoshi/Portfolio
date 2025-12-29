@@ -22,7 +22,7 @@ const Sidebar = () => {
   return (
     <div
       className={`fixed left-0 top-0 h-full bg-[#000000] z-40 flex flex-col transition-all duration-300 ${
-        isCollapsed ? "w-16" : "w-64"
+        isCollapsed ? "w-16 items-center" : "w-64"
       }`}
     >
       <div className="p-6 flex flex-col h-full">

@@ -15,8 +15,9 @@ function WaveBar({ index, total }: { index: number; total: number }) {
     const time = clock.getElapsedTime();
     const frequency = 0.5 + (index / total) * 2;
     const amplitude = 0.3 + Math.sin(index * 0.2) * 0.2;
-    const height = Math.sin(time * frequency + index * 0.1) * amplitude * maxHeight;
-    
+    const height =
+      Math.sin(time * frequency + index * 0.1) * amplitude * maxHeight;
+
     meshRef.current.scale.y = Math.max(0.1, height);
   });
 
@@ -59,4 +60,3 @@ const AudioWave = () => {
 };
 
 export default AudioWave;
-
