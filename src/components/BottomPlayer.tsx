@@ -3,14 +3,12 @@ import {
   Github,
   Linkedin,
   Mail,
-  File,
   Play,
   SkipForward,
   SkipBack,
   Repeat,
 } from "lucide-react";
 import Image from "next/image";
-import ResumeModal from "./ResumeModal";
 import { Button } from "@/components/ui/button";
 import { Slider } from "./ui/slider";
 import { cn } from "@/lib/utils";
@@ -37,7 +35,6 @@ const BottomPlayer = () => {
       label: "Email",
       isLink: true,
     },
-    { icon: File, href: "#", label: "Resume", isLink: false },
   ];
 
   return (
@@ -142,11 +139,6 @@ const BottomPlayer = () => {
           })}
         </div>
       </div>
-
-      <ResumeModal
-        isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
-      />
     </>
   );
 };

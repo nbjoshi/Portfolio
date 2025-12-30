@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -79,40 +78,13 @@ const artificialIntelligence: Record<string, string> = {
 
 const generateBadge = (skill: string, path: string) => {
   return (
-    <div className="flex items-center gap-3 flex-wrap">
-      <Badge
-        variant="outline"
-        className="
-          group rounded-full pl-[7px] pr-3 py-1
-          flex items-center
-          border-white/15 bg-white/[0.02]
-          transition-all duration-200
-          hover:-translate-y-[1px]
-          hover:border-[#00E5FF]/60
-          hover:shadow-[0_0_18px_rgba(0,229,255,0.35)]
-          hover:bg-white/[0.04]
-        "
-      >
-        <span
-          className="
-            mr-2 flex h-10 w-10 items-center justify-center rounded-full
-            bg-white/5
-            transition-all duration-200
-            group-hover:bg-[#00E5FF]/10
-            group-hover:shadow-[0_0_16px_rgba(0,229,255,0.35)]
-          "
-        >
-          <img
-            src={`/icons/${path}`}
-            alt=""
-            className="h-6 w-6 object-contain"
-          />
-        </span>
-
-        <span className="transition-colors duration-200 group-hover:text-[#BFF7FF]">
-          {skill}
-        </span>
-      </Badge>
+    <div className="flex items-center gap-2">
+      <img
+        src={`/icons/${path}`}
+        alt={skill}
+        className="h-6 w-6 object-contain"
+      />
+      <span className="text-[#B3B3B3] text-sm">{skill}</span>
     </div>
   );
 };
@@ -135,7 +107,7 @@ export default function Home() {
             <img
               src="/profile_pic.png"
               alt="Profile"
-              className="w-full h-full object-cover object-[60%_20%] scale-150"
+              className="w-full h-full object-cover object-[90%_20%] scale-[2]"
             />
           </motion.div>
 
@@ -186,6 +158,25 @@ export default function Home() {
               </p>
 
               <p className="text-[#B3B3B3] leading-relaxed mt-2">
+                My journey didn't start with code; it started with a fascination
+                for dermatology. I entered university on the pre-med track,
+                having spent years researching skincare science to solve my own
+                health challenges. However, everything changed during my
+                freshman fall when I took an introductory Python course (COMP
+                110).
+              </p>
+
+              <p className="text-[#B3B3B3] leading-relaxed mt-2">
+                I fell in love with the logic and immediate feedback loop of
+                programming. That same semester, I joined Computer Science for
+                Social Good, where I saw how web development could create
+                tangible impact. I realized that while I loved the science of
+                medicine, my true passion lay in building solutions. I swapped
+                the stethoscope for a text editor, and I haven't looked back
+                since.
+              </p>
+
+              <p className="text-[#B3B3B3] leading-relaxed mt-2">
                 I’m currently a Software Development Intern at{" "}
                 <Link
                   href="https://www.bandwidth.com/"
@@ -203,91 +194,22 @@ export default function Home() {
                 clean interfaces, strong testing, and maintainable architecture.
               </p>
               <p className="text-[#B3B3B3] leading-relaxed mt-2">
+                On campus, I stay active in the tech community through clubs
+                like App Team Carolina and Computer Science for Social Good. I
+                also serve as a Teaching Assistant for COMP 426: Modern Web
+                Programming, where I help other students build their own
+                foundation in full-stack development.
+              </p>
+              <p className="text-[#B3B3B3] leading-relaxed mt-2">
                 What ties all of my experience together is the same motivation:
-                I like taking ambiguous problems, breaking them down into clear
-                systems, and delivering something people can actually use. I
-                care a lot about engineering fundamentals—good APIs, thoughtful
-                data models, observability, and performance—while still keeping
-                an eye on product polish and user experience.
+                I like taking problems, breaking them down into clear
+                solutions, and delivering something people can actually use. 
               </p>
               <p className="text-[#B3B3B3] leading-relaxed mt-2">
                 If you’re building something interesting or just want to talk
-                software, startups, or the best way to architect a clean
-                project, feel free to reach out.
+                computer science, feel free to reach out. My social media is in the
+                bottom right corner!
               </p>
-            </CardContent>
-          </Card>
-
-          {/* Skills Card */}
-          <Card className="bg-[#181818]">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl">Skills</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                    Languages
-                  </h3>
-                  <div className="flex flex-wrap gap-6">
-                    {Object.entries(languages).map(([language, filename]) =>
-                      generateBadge(language, filename)
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                    Frontend
-                  </h3>
-                  <div className="flex flex-wrap gap-6">
-                    {Object.entries(frontend).map(([language, filename]) =>
-                      generateBadge(language, filename)
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                    Backend
-                  </h3>
-                  <div className="flex flex-wrap gap-6">
-                    {Object.entries(backend).map(([language, filename]) =>
-                      generateBadge(language, filename)
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                    Infrastructure
-                  </h3>
-                  <div className="flex flex-wrap gap-6">
-                    {Object.entries(infrastructure).map(
-                      ([language, filename]) =>
-                        generateBadge(language, filename)
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                    Testing
-                  </h3>
-                  <div className="flex flex-wrap gap-6">
-                    {Object.entries(testing).map(([language, filename]) =>
-                      generateBadge(language, filename)
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                    Artificial Intelligence (AI)
-                  </h3>
-                  <div className="flex flex-wrap gap-6">
-                    {Object.entries(artificialIntelligence).map(
-                      ([language, filename]) =>
-                        generateBadge(language, filename)
-                    )}
-                  </div>
-                </div>
-              </div>
             </CardContent>
           </Card>
         </div>

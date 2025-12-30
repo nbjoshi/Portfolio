@@ -78,8 +78,12 @@ export default function Library() {
       className="min-h-full p-8"
     >
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white mb-2">Your Library</h1>
-        <p className="text-[#B3B3B3]">Saved projects and reading list</p>
+        <h1 className="text-4xl font-bold text-white mb-2">My Life</h1>
+        <p className="text-[#B3B3B3]">
+          Welcome to my personal library. Below are the "albums" of my life:
+          moments, hobbies, and adventures that play on repeat when I'm away
+          from the keyboard.
+        </p>
       </div>
 
       <motion.div variants={containerVariants} className="space-y-4">
