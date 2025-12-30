@@ -23,72 +23,6 @@ const itemVariants = {
   },
 };
 
-const languages: Record<string, string> = {
-  Java: "Java.png",
-  Python: "Python.jpeg",
-  JavaScript: "JavaScript.png",
-  TypeScript: "TypeScript.png",
-  Swift: "Swift.png",
-  SQL: "SQL.png",
-  C: "C.png",
-  HTML: "HTML.png",
-  CSS: "CSS.png",
-};
-
-const frontend: Record<string, string> = {
-  TailwindCSS: "Tailwind.png",
-  React: "React.png",
-  "TanStack Query": "TanStackQuery.png",
-  "React Router": "ReactRouter.png",
-  "Next.js": "Next.png",
-  SwiftUI: "SwiftUI.jpeg",
-};
-
-const backend: Record<string, string> = {
-  "Spring Boot": "SpringBoot.png",
-  FastAPI: "FastApi.jpeg",
-  Django: "Django.png",
-  "Express.js": "Express.png",
-  "Node.js": "Node.png",
-};
-
-const infrastructure: Record<string, string> = {
-  Docker: "Docker.png",
-  AWS: "AWS.png",
-  MySQL: "MySQL.png",
-  PostgreSQL: "PostgreSQL.png",
-  Supabase: "Supabase.jpeg",
-  "Git/GitHub Actions": "Git.png",
-};
-
-const testing: Record<string, string> = {
-  Jest: "Jest.png",
-  Cypress: "Cypress.jpeg",
-  JUnit: "JUnit.png",
-  TestNG: "TestNG.jpeg",
-  Mockito: "Mockito.jpeg",
-};
-
-const artificialIntelligence: Record<string, string> = {
-  ChatGPT: "ChatGPT.png",
-  "Gemini API": "Gemini.png",
-  Cursor: "Cursor.jpeg",
-  "GitHub Copilot": "Copilot.png",
-};
-
-const generateBadge = (skill: string, path: string) => {
-  return (
-    <div className="flex items-center gap-2">
-      <img
-        src={`/icons/${path}`}
-        alt={skill}
-        className="h-6 w-6 object-contain"
-      />
-      <span className="text-[#B3B3B3] text-sm">{skill}</span>
-    </div>
-  );
-};
-
 export default function Home() {
   return (
     <motion.div
@@ -107,7 +41,7 @@ export default function Home() {
             <img
               src="/profile_pic.png"
               alt="Profile"
-              className="w-full h-full object-cover object-[90%_20%] scale-[2]"
+              className="w-full h-full object-cover object-[60%_0%] scale-[1.75]"
             />
           </motion.div>
 
@@ -202,13 +136,15 @@ export default function Home() {
               </p>
               <p className="text-[#B3B3B3] leading-relaxed mt-2">
                 What ties all of my experience together is the same motivation:
-                I like taking problems, breaking them down into clear
-                solutions, and delivering something people can actually use. 
+                I like taking problems, breaking them down into clear solutions,
+                and delivering something people can actually use. I get the
+                chance to express my creative side through some of my side
+                projects which you can find in the experience section!
               </p>
               <p className="text-[#B3B3B3] leading-relaxed mt-2">
                 If you’re building something interesting or just want to talk
-                computer science, feel free to reach out. My social media is in the
-                bottom right corner!
+                computer science, feel free to reach out. My social media is in
+                the bottom right corner!
               </p>
             </CardContent>
           </Card>

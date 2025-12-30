@@ -15,7 +15,7 @@ const Sidebar = () => {
   const { isCollapsed, toggleSidebar } = useSidebar();
   const navItems = [
     { icon: Home, label: "Home", href: "/" },
-    { icon: FolderCog, label: "Experience", href: "/projects" },
+    { icon: FolderCog, label: "Experience", href: "/experience" },
     { icon: Library, label: "My Library", href: "/library" },
   ];
 

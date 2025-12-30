@@ -6,45 +6,38 @@ import Image from "next/image";
 const savedItems = [
   {
     id: "1",
-    title: "React Best Practices",
-    type: "Article",
+    title: "On Repeat",
+    type: "Playlist",
     icon: BookOpen,
     imageUrl: "https://picsum.photos/200/200?random=1",
   },
   {
     id: "2",
-    title: "TypeScript Advanced Patterns",
+    title: "Travels",
     type: "Tutorial",
     icon: Code,
     imageUrl: "https://picsum.photos/200/200?random=2",
   },
   {
     id: "3",
-    title: "Web Performance Optimization",
+    title: "Chapel Hill",
     type: "Guide",
     icon: FileText,
     imageUrl: "https://picsum.photos/200/200?random=3",
   },
   {
     id: "4",
-    title: "Next.js 14 Features",
+    title: "Box Office",
     type: "Documentation",
     icon: Globe,
     imageUrl: "https://picsum.photos/200/200?random=4",
   },
   {
     id: "5",
-    title: "CSS Grid Mastery",
+    title: "Eats",
     type: "Course",
     icon: BookOpen,
     imageUrl: "https://picsum.photos/200/200?random=5",
-  },
-  {
-    id: "6",
-    title: "GraphQL Fundamentals",
-    type: "Tutorial",
-    icon: Code,
-    imageUrl: "https://picsum.photos/200/200?random=6",
   },
 ];
 
