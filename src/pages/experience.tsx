@@ -1,9 +1,18 @@
 import ProjectCard from "@/components/ProjectCard";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import { projects } from "@/data/projects";
 import { motion } from "framer-motion";
 import Timeline from "@/components/Timeline";
+import { useState, useEffect } from "react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -188,6 +197,75 @@ const classes: Class[] = [
   },
 ];
 
+const ProjectsCarousel = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  return (
+    <div className="px-12">
+      <Carousel
+        setApi={setApi}
+        opts={{
+          align: "center",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-2 md:-ml-4">
+          {projects.map((project, index) => {
+            const isCenter = current === index;
+            const isSide =
+              Math.abs(current - index) === 1 ||
+              (current === 0 && index === projects.length - 1) ||
+              (current === projects.length - 1 && index === 0);
+
+            return (
+              <CarouselItem
+                key={project.id}
+                className="pl-2 md:pl-4 basis-full md:basis-1/3"
+              >
+                <motion.div
+                  variants={itemVariants}
+                  className={`relative transition-all duration-500 ${
+                    isCenter
+                      ? "scale-100 z-10"
+                      : isSide
+                      ? "scale-90 blur-sm opacity-60"
+                      : "scale-75 blur-md opacity-40"
+                  }`}
+                >
+                  <motion.div
+                    whileHover={isCenter ? { scale: 1.05 } : {}}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <ProjectCard
+                      title={project.title}
+                      subtitle={project.subtitle}
+                      imageUrl={project.imageUrl}
+                      repoUrl={project.repoUrl}
+                    />
+                  </motion.div>
+                </motion.div>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+        <CarouselPrevious className="bg-[#1ED760] hover:bg-[#1ed760]/90 border-[#1ED760] text-white" />
+        <CarouselNext className="bg-[#1ED760] hover:bg-[#1ed760]/90 border-[#1ED760] text-white" />
+      </Carousel>
+    </div>
+  );
+};
+
 const generateBadge = (skill: string, path: string) => {
   return (
     <div className="flex items-center gap-3 flex-wrap">
@@ -355,21 +433,7 @@ export default function Experience() {
                 Projects
               </h2>
             </motion.div>
-            <motion.div
-              variants={containerVariants}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"
-            >
-              {projects.map((project, index) => (
-                <motion.div key={project.id} variants={itemVariants}>
-                  <ProjectCard
-                    title={project.title}
-                    subtitle={project.subtitle}
-                    imageUrl={project.imageUrl}
-                    repoUrl={project.repoUrl}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
+            <ProjectsCarousel />
           </CardContent>
         </Card>
       </motion.div>
