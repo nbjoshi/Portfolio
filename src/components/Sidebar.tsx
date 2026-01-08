@@ -25,8 +25,8 @@ const Sidebar = () => {
         isCollapsed ? "w-16 items-center" : "w-64"
       }`}
     >
-      <div className="p-6 flex flex-col h-full">
-        <div className="flex items-center justify-between mb-8">
+      <div className={`p-6 flex flex-col h-full ${isCollapsed ? "items-center" : ""}`}>
+        <div className={`flex items-center mb-8 ${isCollapsed ? "justify-center" : "justify-between"}`}>
           {!isCollapsed && (
             <h2 className="text-white text-2xl font-bold">Portfolio</h2>
           )}
@@ -34,7 +34,7 @@ const Sidebar = () => {
             variant="ghost"
             size="icon"
             onClick={toggleSidebar}
-            className="ml-auto"
+            className={isCollapsed ? "" : "ml-auto"}
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {isCollapsed ? (

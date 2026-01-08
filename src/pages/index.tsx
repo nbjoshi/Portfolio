@@ -49,7 +49,6 @@ export default function Home() {
             variants={itemVariants}
             className="flex-1 pb-4 text-center sm:text-left"
           >
-            <p className="text-lg text-[#B3B3B3] mb-2">PROFILE</p>
             <h1
               className="
   text-4xl sm:text-5xl md:text-7xl lg:text-9xl
@@ -101,8 +100,7 @@ export default function Home() {
               </p>
 
               <p className="text-[#B3B3B3] leading-relaxed mt-2">
-                I fell in love with the logic and immediate feedback loop of
-                programming. That same semester, I joined Computer Science for
+              I fell in love with the inherent logic of programming and the unique thrill of seeing my creative ideas come to life through code. That same semester, I joined Computer Science for
                 Social Good, where I saw how web development could create
                 tangible impact. I realized that while I loved the science of
                 medicine, my true passion lay in building solutions. I swapped
@@ -123,7 +121,7 @@ export default function Home() {
                 </Link>{" "}
                 (Raleigh, NC), where I’ve worked on production tools and APIs
                 that support high-volume workflows. A big part of my work has
-                been modernizing and extending internal systems—building Spring
+                been modernizing and extending legacy systems, building Spring
                 Boot services and React/TypeScript dashboards, and pushing for
                 clean interfaces, strong testing, and maintainable architecture.
               </p>

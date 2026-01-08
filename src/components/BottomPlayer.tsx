@@ -52,9 +52,9 @@ const BottomPlayer = () => {
           </div>
           <div className="flex flex-col min-w-0">
             <span className="text-white text-sm font-medium truncate">
-              Hire Me
+              Built with ❤️ by Neel Joshi
             </span>
-            <span className="text-[#B3B3B3] text-xs truncate">Neel Joshi</span>
+            <span className="text-[#B3B3B3] text-xs truncate">© 2026 Neel Joshi</span>
           </div>
         </div>
 
@@ -80,6 +80,7 @@ const BottomPlayer = () => {
               step={1}
               defaultValue={[50]}
               max={100}
+              disabled
               className={cn(
                 "w-full cursor-pointer group",
 

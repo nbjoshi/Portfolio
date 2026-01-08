@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/carousel";
 import { projects } from "@/data/projects";
 import { motion } from "framer-motion";
-import Timeline from "@/components/Timeline";
 import { useState, useEffect } from "react";
 
 const containerVariants = {
@@ -102,28 +101,28 @@ const classes: Class[] = [
     name: "Introduction to Programming",
     semester: "Fall",
     year: "2023",
-    description: "...",
+    description: "Introduction to Python and the fundamentals of programming",
   },
   {
     code: "MATH 381",
     name: "Discrete Math",
     semester: "Spring",
     year: "2024",
-    description: "...",
+    description: "Discrete mathematics and proofs",
   },
   {
     code: "COMP 210",
     name: "Data Structures and Algorithms",
     semester: "Spring",
     year: "2024",
-    description: "...",
+    description: "Data structures and algorithms",
   },
   {
     code: "MATH 347",
     name: "Linear Algebra",
     semester: "Fall",
     year: "2024",
-    description: "...",
+    description: "Linear algebra and vector spaces",
   },
   {
     code: "STOR 120",
@@ -193,6 +192,27 @@ const classes: Class[] = [
     name: "Multivariable Calculus",
     semester: "Fall",
     year: "2025",
+    description: "...",
+  },
+  {
+    code: "COMP 488",
+    name: "Data Science in the Business World",
+    semester: "Spring",
+    year: "2026",
+    description: "...",
+  },
+  {
+    code: "COMP 560",
+    name: "Artificial Intelligence",
+    semester: "Spring",
+    year: "2026",
+    description: "...",
+  },
+  {
+    code: "STOR 435",
+    name: "Probability",
+    semester: "Spring",
+    year: "2026",
     description: "...",
   },
 ];
@@ -266,7 +286,7 @@ const ProjectsCarousel = () => {
   );
 };
 
-const generateBadge = (skill: string, path: string) => {
+const generateBadge = (skill: string) => {
   return (
     <div className="flex items-center gap-3 flex-wrap">
       <Badge
@@ -277,30 +297,11 @@ const generateBadge = (skill: string, path: string) => {
   border-white/15 bg-white/[0.02]
   transition-all duration-200
   hover:-translate-y-[1px]
-  hover:border-[#00E5FF]/60
-  hover:shadow-[0_0_18px_rgba(0,229,255,0.35)
+  hover:border-[#1ED760]/60
+  hover:shadow-[0_0_18px_rgba(30,215,96,0.35)]
   hover:bg-white/[0.04]"
       >
-        <span
-          className="
-  
-  mr-2 flex h-10 w-10 items-center justify-center rounded-full
-  bg-white/5
-  transition-all duration-200
-  group-hover:bg-[#00E5FF]/10
-  group-hover:shadow-[0_0_16px_rgba(0,229,255,0.35)]
-  overflow-hidden
-  shrink-0
-  "
-        >
-          <img
-            src={`/icons/${path}`}
-            alt={skill}
-            className="max-h-7 max-w-7 h-auto w-auto object-contain"
-          />
-        </span>
-
-        <span className="transition-colors duration-200 group-hover:text-[#BFF7FF]">
+        <span className="transition-colors duration-200 group-hover:text-[#1ED760] px-3 py-1">
           {skill}
         </span>
       </Badge>
@@ -316,9 +317,18 @@ export default function Experience() {
       variants={containerVariants}
       className="min-h-full relative max-w-7xl mx-auto p-8"
     >
-      {/* Timeline */}
+      {/* Projects Section */}
       <motion.div variants={itemVariants}>
-        <Timeline />
+        <Card className="bg-[#181818] py-8 mb-8">
+          <CardContent>
+            <motion.div variants={itemVariants} className="mb-6">
+              <h2 className="text-2xl font-bold text-white mb-2 border-b border-[#282828] pb-2">
+                Projects
+              </h2>
+            </motion.div>
+            <ProjectsCarousel />
+          </CardContent>
+        </Card>
       </motion.div>
 
       {/* Skills Card */}
@@ -335,8 +345,8 @@ export default function Experience() {
                   Languages
                 </h3>
                 <div className="flex flex-wrap gap-6">
-                  {Object.entries(languages).map(([language, filename]) =>
-                    generateBadge(language, filename)
+                  {Object.keys(languages).map((language) =>
+                    generateBadge(language)
                   )}
                 </div>
               </div>
@@ -347,8 +357,8 @@ export default function Experience() {
                   Frontend
                 </h3>
                 <div className="flex flex-wrap gap-6">
-                  {Object.entries(frontend).map(([language, filename]) =>
-                    generateBadge(language, filename)
+                  {Object.keys(frontend).map((language) =>
+                    generateBadge(language)
                   )}
                 </div>
               </div>
@@ -359,8 +369,8 @@ export default function Experience() {
                   Backend
                 </h3>
                 <div className="flex flex-wrap gap-6">
-                  {Object.entries(backend).map(([language, filename]) =>
-                    generateBadge(language, filename)
+                  {Object.keys(backend).map((language) =>
+                    generateBadge(language)
                   )}
                 </div>
               </div>
@@ -371,8 +381,8 @@ export default function Experience() {
                   Infrastructure
                 </h3>
                 <div className="flex flex-wrap gap-6">
-                  {Object.entries(infrastructure).map(([language, filename]) =>
-                    generateBadge(language, filename)
+                  {Object.keys(infrastructure).map((language) =>
+                    generateBadge(language)
                   )}
                 </div>
               </div>
@@ -411,9 +421,9 @@ export default function Experience() {
                           <h3 className="text-white font-semibold text-base mb-2 group-hover:text-[#1ED760] transition-colors">
                             {classItem.name}
                           </h3>
-                          <p className="text-[#B3B3B3] text-sm leading-relaxed group-hover:text-white transition-colors">
+                          {/* <p className="text-[#B3B3B3] text-sm leading-relaxed group-hover:text-white transition-colors">
                             {classItem.description}
-                          </p>
+                          </p> */}
                         </div>
                       </div>
                     </CardContent>
@@ -421,19 +431,6 @@ export default function Experience() {
                 </motion.div>
               ))}
             </div>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      <motion.div variants={itemVariants}>
-        <Card className="bg-[#181818] py-8 mb-8">
-          <CardContent>
-            <motion.div variants={itemVariants} className="mb-6">
-              <h2 className="text-2xl font-bold text-white mb-2 border-b border-[#282828] pb-2">
-                Projects
-              </h2>
-            </motion.div>
-            <ProjectsCarousel />
           </CardContent>
         </Card>
       </motion.div>
