@@ -16,10 +16,16 @@ module.exports = {
         "hover-bg": "#1a1a1a",
       },
       fontFamily: {
-        sans: ['"Inter Light"', '"Inter"', "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "sans-serif"],
+        sans: [
+          '"Inter Light"',
+          '"Inter"',
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"Segoe UI"',
+          "sans-serif",
+        ],
       },
     },
   },
   plugins: [],
 };
-
