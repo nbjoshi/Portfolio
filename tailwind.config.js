@@ -16,7 +16,7 @@ module.exports = {
         "hover-bg": "#1a1a1a",
       },
       fontFamily: {
-        sans: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
+        sans: ['"Inter Light"', '"Inter"', "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "sans-serif"],
       },
     },
   },

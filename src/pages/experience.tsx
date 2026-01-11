@@ -1,17 +1,9 @@
-import ProjectCard from "@/components/ProjectCard";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import { projects } from "@/data/projects";
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -34,406 +26,378 @@ const itemVariants = {
   },
 };
 
-const languages: Record<string, string> = {
-  Java: "Java.png",
-  Python: "Python.jpeg",
-  JavaScript: "JavaScript.png",
-  TypeScript: "TypeScript.png",
-  Swift: "Swift.png",
-  SQL: "SQL.png",
-  C: "C.png",
-  HTML: "HTML.png",
-  CSS: "CSS.png",
-};
+const languages = [
+  "Java",
+  "Python",
+  "JavaScript/TypeScript",
+  "Swift",
+  "SQL",
+  "C",
+  "HTML/CSS",
+];
 
-const frontend: Record<string, string> = {
-  TailwindCSS: "Tailwind.png",
-  React: "React.png",
-  "TanStack Query": "TanStackQuery.png",
-  "React Router": "ReactRouter.png",
-  "Next.js": "Next.png",
-  SwiftUI: "SwiftUI.jpeg",
-};
+const frontend = [
+  "TailwindCSS",
+  "React",
+  "TanStack Query",
+  "React Router",
+  "Next.js",
+  "SwiftUI",
+];
 
-const backend: Record<string, string> = {
-  "Spring Boot": "SpringBoot.png",
-  FastAPI: "FastApi.jpeg",
-  Django: "Django.png",
-  "Express.js": "Express.png",
-  "Node.js": "Node.png",
-};
+const testing = ["Jest", "Cypress", "JUnit", "Mockito", "TestNG"];
 
-const infrastructure: Record<string, string> = {
-  Docker: "Docker.png",
-  AWS: "AWS.png",
-  MySQL: "MySQL.png",
-  PostgreSQL: "PostgreSQL.png",
-  Supabase: "Supabase.jpeg",
-  "Git/GitHub Actions": "Git.png",
-};
+const backend = [
+  "Spring Boot",
+  "FastAPI",
+  "Django",
+  "Express.js/Node.js",
+  "SQLAlchemy",
+  "Drizzle",
+  "Supabase",
+];
 
-const testing: Record<string, string> = {
-  Jest: "Jest.png",
-  Cypress: "Cypress.jpeg",
-  JUnit: "JUnit.png",
-  TestNG: "TestNG.jpeg",
-  Mockito: "Mockito.jpeg",
-};
+const tools = [
+  "Docker",
+  "AWS",
+  "MySQL",
+  "PostgreSQL",
+  "Supabase",
+  "GitHub Actions",
+  "Cursor",
+  "Claude Code",
+  "Google Gemini API",
+];
 
-const artificialIntelligence: Record<string, string> = {
-  ChatGPT: "ChatGPT.png",
-  "Gemini API": "Gemini.png",
-  Cursor: "Cursor.jpeg",
-  "GitHub Copilot": "Copilot.png",
-};
+// Focus Areas
+const focusAreas = [
+  {
+    title: "Backend APIs",
+    description: "RESTful services, Spring Boot, microservices",
+  },
+  {
+    title: "Mobile Development",
+    description: "iOS apps with SwiftUI, native performance",
+  },
+  {
+    title: "Full-Stack Web",
+    description: "React/Next.js frontends, real-time features",
+  },
+  {
+    title: "ML/AI Integration",
+    description: "AI-powered features, LLM APIs, vision models",
+  },
+];
 
-interface Class {
+interface ClassItem {
   code: string;
   name: string;
   semester: string;
   year: string;
-  description: string;
 }
 
-const classes: Class[] = [
+const classes: ClassItem[] = [
   {
     code: "COMP 110",
     name: "Introduction to Programming",
     semester: "Fall",
     year: "2023",
-    description: "Introduction to Python and the fundamentals of programming",
   },
-  {
-    code: "MATH 381",
-    name: "Discrete Math",
-    semester: "Spring",
-    year: "2024",
-    description: "Discrete mathematics and proofs",
-  },
+  { code: "MATH 381", name: "Discrete Math", semester: "Spring", year: "2024" },
   {
     code: "COMP 210",
     name: "Data Structures and Algorithms",
     semester: "Spring",
     year: "2024",
-    description: "Data structures and algorithms",
   },
-  {
-    code: "MATH 347",
-    name: "Linear Algebra",
-    semester: "Fall",
-    year: "2024",
-    description: "Linear algebra and vector spaces",
-  },
+  { code: "MATH 347", name: "Linear Algebra", semester: "Fall", year: "2024" },
   {
     code: "STOR 120",
-    name: "Foundations of Statistics and Data Science",
+    name: "Foundations of Statistics",
     semester: "Fall",
     year: "2024",
-    description: "...",
   },
   {
     code: "COMP 301",
-    name: "Design Patterns and Object-Oriented Programming",
+    name: "Design Patterns and OOP",
     semester: "Fall",
     year: "2024",
-    description: "...",
   },
   {
     code: "COMP 211",
     name: "Systems Fundamentals",
     semester: "Fall",
     year: "2024",
-    description: "...",
   },
   {
     code: "COMP 433",
     name: "Mobile Development",
     semester: "Spring",
     year: "2025",
-    description: "...",
   },
   {
     code: "COMP 426",
     name: "Modern Web Development",
     semester: "Spring",
     year: "2025",
-    description: "...",
   },
   {
     code: "COMP 421",
     name: "Files and Databases",
     semester: "Spring",
     year: "2025",
-    description: "...",
   },
   {
     code: "COMP 550",
     name: "Algorithms and Analysis",
     semester: "Spring",
     year: "2025",
-    description: "...",
   },
   {
     code: "COMP 455",
     name: "Models of Languages and Computation",
     semester: "Fall",
     year: "2025",
-    description: "...",
   },
   {
     code: "COMP 311",
     name: "Computer Architecture",
     semester: "Fall",
     year: "2025",
-    description: "...",
   },
   {
     code: "MATH 233",
     name: "Multivariable Calculus",
     semester: "Fall",
     year: "2025",
-    description: "...",
   },
   {
     code: "COMP 488",
-    name: "Data Science in the Business World",
+    name: "Data Science in Business",
     semester: "Spring",
     year: "2026",
-    description: "...",
   },
   {
     code: "COMP 560",
     name: "Artificial Intelligence",
     semester: "Spring",
     year: "2026",
-    description: "...",
   },
-  {
-    code: "STOR 435",
-    name: "Probability",
-    semester: "Spring",
-    year: "2026",
-    description: "...",
-  },
+  { code: "STOR 435", name: "Probability", semester: "Spring", year: "2026" },
 ];
 
-const ProjectsCarousel = () => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
+const SkillBadge = ({
+  skill,
+  variant = "language",
+}: {
+  skill: string;
+  variant?: "language" | "frontend" | "backend" | "tools" | "testing";
+}) => {
+  const variantStyles = {
+    language: "border-[#1ED760]/40 bg-[#1ED760]/10 text-[#1ED760]",
+    frontend: "border-[#3B82F6]/40 bg-[#3B82F6]/10 text-[#3B82F6]",
+    backend: "border-[#888]/30 bg-[#888]/10 text-[#888]",
+    tools: "border-[#A855F7]/40 bg-[#A855F7]/10 text-[#A855F7]",
+    testing: "border-[#F59E0B]/40 bg-[#F59E0B]/10 text-[#F59E0B]",
+  };
 
   return (
-    <div className="px-12">
-      <Carousel
-        setApi={setApi}
-        opts={{
-          align: "center",
-          loop: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-2 md:-ml-4">
-          {projects.map((project, index) => {
-            const isCenter = current === index;
-            const isSide =
-              Math.abs(current - index) === 1 ||
-              (current === 0 && index === projects.length - 1) ||
-              (current === projects.length - 1 && index === 0);
-
-            return (
-              <CarouselItem
-                key={project.id}
-                className="pl-2 md:pl-4 basis-full md:basis-1/3"
-              >
-                <motion.div
-                  variants={itemVariants}
-                  className={`relative transition-all duration-500 ${
-                    isCenter
-                      ? "scale-100 z-10"
-                      : isSide
-                      ? "scale-90 blur-sm opacity-60"
-                      : "scale-75 blur-md opacity-40"
-                  }`}
-                >
-                  <motion.div
-                    whileHover={isCenter ? { scale: 1.05 } : {}}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <ProjectCard
-                      title={project.title}
-                      subtitle={project.subtitle}
-                      imageUrl={project.imageUrl}
-                      repoUrl={project.repoUrl}
-                    />
-                  </motion.div>
-                </motion.div>
-              </CarouselItem>
-            );
-          })}
-        </CarouselContent>
-        <CarouselPrevious className="bg-[#1ED760] hover:bg-[#1ed760]/90 border-[#1ED760] text-white" />
-        <CarouselNext className="bg-[#1ED760] hover:bg-[#1ed760]/90 border-[#1ED760] text-white" />
-      </Carousel>
-    </div>
-  );
-};
-
-const generateBadge = (skill: string) => {
-  return (
-    <div className="flex items-center gap-3 flex-wrap">
-      <Badge
-        variant="outline"
-        className="
-  group rounded-full
-  flex items-center
-  border-white/15 bg-white/[0.02]
-  transition-all duration-200
-  hover:-translate-y-[1px]
-  hover:border-[#1ED760]/60
-  hover:shadow-[0_0_18px_rgba(30,215,96,0.35)]
-  hover:bg-white/[0.04]"
-      >
-        <span className="transition-colors duration-200 group-hover:text-[#1ED760] px-3 py-1">
-          {skill}
-        </span>
-      </Badge>
-    </div>
+    <Badge
+      variant="outline"
+      className={`${variantStyles[variant]} text-sm px-3 py-1 hover:scale-105 transition-transform cursor-default`}
+    >
+      {skill}
+    </Badge>
   );
 };
 
 export default function Experience() {
+  const [classesExpanded, setClassesExpanded] = useState(false);
+
   return (
     <motion.div
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="min-h-full relative max-w-7xl mx-auto p-8"
+      className="min-h-full relative max-w-6xl mx-auto px-8 py-12"
     >
-      {/* Projects Section */}
-      <motion.div variants={itemVariants}>
-        <Card className="bg-[#181818] py-8 mb-8">
-          <CardContent>
-            <motion.div variants={itemVariants} className="mb-6">
-              <h2 className="text-2xl font-bold text-white mb-2 border-b border-[#282828] pb-2">
-                Projects
-              </h2>
-            </motion.div>
-            <ProjectsCarousel />
-          </CardContent>
-        </Card>
+      <motion.div variants={itemVariants} className="mb-12">
+        <h1 className="text-4xl font-bold text-white mb-4">Experience</h1>
+        <p className="text-[#888] text-lg">
+          Skills, focus areas, and coursework that shape my engineering
+          practice.
+        </p>
       </motion.div>
 
-      {/* Skills Card */}
-      <motion.div variants={itemVariants}>
-        <Card className="bg-[#181818] mb-8">
-          <CardHeader>
-            <CardTitle className="text-white text-2xl">Skills</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-8">
-              {/* Languages */}
+      <motion.section variants={itemVariants} className="mb-8">
+        <Link href="/projects">
+          <Card className="bg-[#0a0a0a]/80 border-[#1a1a1a] backdrop-blur-sm hover:border-[#1ED760]/30 transition-all cursor-pointer group">
+            <CardContent className="p-6 flex items-center justify-between">
               <div>
-                <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                  Languages
-                </h3>
-                <div className="flex flex-wrap gap-6">
-                  {Object.keys(languages).map((language) =>
-                    generateBadge(language)
-                  )}
-                </div>
+                <h2 className="text-white text-xl font-semibold mb-1 group-hover:text-[#1ED760] transition-colors">
+                  View My Projects
+                </h2>
+                <p className="text-[#888] text-sm">
+                  Featured case studies and more work
+                </p>
               </div>
+              <ArrowRight className="w-6 h-6 text-[#888] group-hover:text-[#1ED760] group-hover:translate-x-1 transition-all" />
+            </CardContent>
+          </Card>
+        </Link>
+      </motion.section>
 
-              {/* Frontend */}
-              <div>
-                <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                  Frontend
-                </h3>
-                <div className="flex flex-wrap gap-6">
-                  {Object.keys(frontend).map((language) =>
-                    generateBadge(language)
-                  )}
-                </div>
-              </div>
-
-              {/* Backend */}
-              <div>
-                <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                  Backend
-                </h3>
-                <div className="flex flex-wrap gap-6">
-                  {Object.keys(backend).map((language) =>
-                    generateBadge(language)
-                  )}
-                </div>
-              </div>
-
-              {/* Infrastructure */}
-              <div>
-                <h3 className="text-white text-lg font-semibold mb-4 pb-2 border-b border-[#282828]">
-                  Infrastructure
-                </h3>
-                <div className="flex flex-wrap gap-6">
-                  {Object.keys(infrastructure).map((language) =>
-                    generateBadge(language)
-                  )}
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </motion.div>
-
-      {/* Classes Section */}
-      <motion.div variants={itemVariants}>
-        <Card className="bg-[#181818] mb-8">
-          <CardHeader>
-            <CardTitle className="text-white text-2xl">Classes</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-4">
-              {classes.map((classItem, index) => (
+      <motion.section variants={itemVariants} className="mb-8">
+        <Card className="bg-[#0a0a0a]/80 border-[#1a1a1a] backdrop-blur-sm">
+          <CardContent className="p-6">
+            <h2 className="text-white text-xl font-semibold mb-6">
+              Focus Areas
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {focusAreas.map((area, index) => (
                 <motion.div
-                  key={`${classItem.code}-${index}`}
+                  key={index}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ y: -2 }}
+                  className="p-4 rounded-lg bg-[#1a1a1a]/50 border border-[#1a1a1a] hover:border-[#1ED760]/30 transition-all"
                 >
-                  <Card className="bg-[#121212] border-[#282828] hover:border-[#1ED760]/50 transition-all duration-300 cursor-pointer group">
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-[#1ED760] font-semibold text-sm">
-                              {classItem.code}
-                            </span>
-                            <span className="text-[#B3B3B3] text-xs group-hover:text-[#1ED760] transition-colors">
-                              {classItem.semester} {classItem.year}
-                            </span>
-                          </div>
-                          <h3 className="text-white font-semibold text-base mb-2 group-hover:text-[#1ED760] transition-colors">
-                            {classItem.name}
-                          </h3>
-                          {/* <p className="text-[#B3B3B3] text-sm leading-relaxed group-hover:text-white transition-colors">
-                            {classItem.description}
-                          </p> */}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <h3 className="text-white font-medium mb-1">{area.title}</h3>
+                  <p className="text-[#666] text-sm">{area.description}</p>
                 </motion.div>
               ))}
             </div>
           </CardContent>
         </Card>
-      </motion.div>
+      </motion.section>
+
+      <motion.section variants={itemVariants} className="mb-8">
+        <Card className="bg-[#0a0a0a]/80 border-[#1a1a1a] backdrop-blur-sm">
+          <CardContent className="p-6">
+            <h2 className="text-white text-xl font-semibold mb-6">Skills</h2>
+
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[#1ED760]" />
+                <h3 className="text-white font-medium">Languages</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {languages.map((skill) => (
+                  <SkillBadge key={skill} skill={skill} variant="language" />
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[#3B82F6]" />
+                <h3 className="text-white font-medium">Frontend</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {frontend.map((skill) => (
+                  <SkillBadge key={skill} skill={skill} variant="frontend" />
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[#888]" />
+                <h3 className="text-white font-medium">Backend</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {backend.map((skill) => (
+                  <SkillBadge key={skill} skill={skill} variant="backend" />
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
+                <h3 className="text-white font-medium">Testing</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {testing.map((tool) => (
+                  <SkillBadge key={tool} skill={tool} variant="testing" />
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-2 h-2 rounded-full bg-[#A855F7]" />
+                <h3 className="text-white font-medium">Tools</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {tools.map((tool) => (
+                  <SkillBadge key={tool} skill={tool} variant="tools" />
+                ))}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.section>
+
+      {/* Classes - Collapsible */}
+      <motion.section variants={itemVariants}>
+        <Card className="bg-[#0a0a0a]/80 border-[#1a1a1a] backdrop-blur-sm">
+          <CardContent className="p-6">
+            <button
+              onClick={() => setClassesExpanded(!classesExpanded)}
+              className="w-full flex items-center justify-between text-left mb-4"
+            >
+              <div>
+                <h2 className="text-white text-xl font-semibold">
+                  Relevant Coursework
+                </h2>
+                <p className="text-[#666] text-sm">
+                  {classes.length} courses completed
+                </p>
+              </div>
+              {classesExpanded ? (
+                <ChevronUp className="w-5 h-5 text-[#888]" />
+              ) : (
+                <ChevronDown className="w-5 h-5 text-[#888]" />
+              )}
+            </button>
+
+            <motion.div
+              initial={false}
+              animate={{
+                height: classesExpanded ? "auto" : 0,
+                opacity: classesExpanded ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {classes.map((classItem, index) => (
+                  <div
+                    key={index}
+                    className="p-3 rounded-lg bg-[#1a1a1a]/50 border border-[#1a1a1a]"
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-[#1ED760] font-mono text-xs">
+                        {classItem.code}
+                      </span>
+                      <span className="text-[#555] text-xs">
+                        {classItem.semester} {classItem.year}
+                      </span>
+                    </div>
+                    <p className="text-white text-sm">{classItem.name}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {!classesExpanded && (
+              <p className="text-[#666] text-sm">
+                Click to view all courses...
+              </p>
+            )}
+          </CardContent>
+        </Card>
+      </motion.section>
     </motion.div>
   );
 }
