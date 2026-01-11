@@ -16,18 +16,18 @@ export const projects: Project[] = [
   },
   {
     id: "2",
+    title: "Minas Brows and Spa (Official Site)",
+    subtitle: "Next.js, Tailwind CSS",
+    imageUrl: "/minas.png",
+    repoUrl: "https://www.minasbrowsandspa.com/",
+  },
+  {
+    id: "3",
     title: "Carolina Lost & Found",
     subtitle: "Next.js, TypeScript, Supabase, TailwindCSS, ShadCn",
     imageUrl: "/carolina_lost_found.png",
     repoUrl: "https://github.com/nbjoshi",
   },
-  // {
-  //   id: "3",
-  //   title: "CV Generator",
-  //   subtitle: "React, CSS, FastAPI, MySQL",
-  //   imageUrl: "https://picsum.photos/400/400?random=3",
-  //   repoUrl: "https://github.com",
-  // },
   {
     id: "4",
     title: "CDC-2024 Datathon",
@@ -45,7 +45,7 @@ export const projects: Project[] = [
   {
     id: "6",
     title: "Fortnite Memory Cards",
-    subtitle: "React",
+    subtitle: "React, Vanilla CSS",
     imageUrl: "/fortnite_game.png",
     repoUrl: "https://odin-memory-card-swart.vercel.app/",
   },
