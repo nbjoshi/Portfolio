@@ -183,6 +183,12 @@ const classes: ClassItem[] = [
     semester: "Spring",
     year: "2026",
   },
+  {
+    code: "COMP 423",
+    name: "Software Engineering",
+    semester: "Spring",
+    year: "2026",
+  },
   { code: "STOR 435", name: "Probability", semester: "Spring", year: "2026" },
 ];
 
