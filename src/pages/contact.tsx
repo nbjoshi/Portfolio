@@ -68,17 +68,26 @@ export default function Contact() {
       <motion.section variants={itemVariants} className="mb-8">
         <Card className="bg-[#0a0a0a]/80 border-[#1a1a1a] backdrop-blur-sm hover:border-[#1ED760]/30 transition-all">
           <CardContent className="p-6">
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-lg bg-[#1ED760]/10 border border-[#1ED760]/20">
-                <Mail className="w-6 h-6 text-[#1ED760]" />
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center">
+              <div className="bg-[#1a1a1a] rounded-lg flex items-center justify-center w-12 h-12 min-w-12 min-h-12">
+                <Mail className="w-5 h-5 text-white" />
               </div>
-              <div className="flex-1">
+
+              <div className="min-w-0 flex-1">
                 <p className="text-white font-medium">Email</p>
-                <p className="text-[#888]">nbjoshi@unc.edu</p>
+                <p className="text-[#888] break-words">nbjoshi@unc.edu</p>
               </div>
+
               <button
                 onClick={copyEmail}
-                className="px-4 py-2 rounded-lg border border-[#333] text-white hover:border-[#1ED760] hover:bg-[#1ED760]/10 transition-all flex items-center gap-2"
+                className="
+        w-full sm:w-auto
+        sm:ml-auto
+        px-4 py-2 rounded-lg border border-[#333]
+        text-white hover:border-[#1ED760] hover:bg-[#1ED760]/10
+        transition-all flex items-center justify-center gap-2
+        shrink-0
+      "
               >
                 {copied ? (
                   <>
@@ -149,4 +158,3 @@ export default function Contact() {
     </motion.div>
   );
 }
-
