@@ -72,6 +72,97 @@ export default function Home() {
       <section className="py-12 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Text Content */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight mb-4">
+                Neel Joshi
+              </h1>
+              <p className="text-xl text-[#B3B3B3] leading-relaxed">
+                Full-stack engineer building high-polish web + iOS products with
+                AI.
+              </p>
+            </div>
+
+            {/* Proof Bullets */}
+            <ul className="space-y-3">
+              {proofBullets.map((bullet, index) => (
+                <motion.li
+                  key={index}
+                  variants={itemVariants}
+                  className="flex items-start gap-3 text-[#888]"
+                >
+                  <span className="text-[#1ED760]">→</span>
+                  <span className="text-sm leading-relaxed">{bullet}</span>
+                </motion.li>
+              ))}
+            </ul>
+
+            {/* CTAs */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              {/* <Link
+                href="/resume.pdf"
+                target="_blank"
+                className="px-6 py-3 bg-[#1ED760] text-black font-semibold rounded-lg hover:bg-[#1ed760]/90 transition-all flex items-center gap-2 hover:scale-105"
+              >
+                <FileText className="w-4 h-4" />
+                View Resume
+              </Link> */}
+              <Link
+                href="/projects"
+                className="px-6 py-3 border border-[#333] text-white font-semibold rounded-lg hover:border-[#1ED760] hover:bg-[#1ED760]/10 transition-all flex items-center gap-2"
+              >
+                View Projects
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              variants={itemVariants}
+              className="flex items-center gap-4 pt-2"
+            >
+              <a
+                href="https://github.com/nbjoshi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-[#888] hover:text-white hover:bg-[#1a1a1a] transition-all"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href="https://linkedin.com/in/neelbjoshi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg text-[#888] hover:text-white hover:bg-[#1a1a1a] transition-all"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <button
+                onClick={copyEmail}
+                className="p-2 rounded-lg text-[#888] hover:text-white hover:bg-[#1a1a1a] transition-all flex items-center gap-2"
+                aria-label="Copy email"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-5 h-5 text-[#1ED760]" />
+                    <span className="text-xs text-[#1ED760]">Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Mail className="w-5 h-5" />
+                    <Copy className="w-3 h-3" />
+                  </>
+                )}
+              </button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Side - Photo */}
           <motion.div
             variants={itemVariants}
             className="flex justify-center lg:justify-end"
@@ -95,9 +186,6 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
-
-          {/* Right Side - Photo */}
-          
         </div>
       </section>
 
