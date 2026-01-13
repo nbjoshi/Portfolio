@@ -54,11 +54,10 @@ export const projects: Project[] = [
     imageUrl: "/minas.png",
     repoUrl: "https://github.com/avgod07/MinasBrowsandSpa",
     liveUrl: "https://www.minasbrowsandspa.com/",
-    description:
-      "A modern, responsive business website for a local spa.",
+    description: "A modern, responsive business website for a local spa.",
     impact: [
-      "Built a modern, business website for local spa",
-      "Mobile-first responsive design",
+      "Built a modern, business website for local spa supporting mobile-first design and complete responsiveness",
+      "Handling 3.4k+ requests daily with low latency and high availability",
       "SEO, Performance, and Accessibility (all 100) optimized for local search",
     ],
     tech: ["Next.js", "TailwindCSS"],
