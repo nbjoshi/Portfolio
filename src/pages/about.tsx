@@ -46,26 +46,9 @@ export default function About() {
       <motion.div variants={itemVariants} className="mb-12">
         <h1 className="text-4xl font-bold text-white mb-4">About Me</h1>
         <p className="text-[#888] text-lg">
-          The quick version and the longer story.
+          The longer story.
         </p>
       </motion.div>
-
-      {/* Quick Facts */}
-      <motion.section variants={itemVariants} className="mb-8">
-        <Card className="bg-[#0a0a0a]/80 border-[#1a1a1a] backdrop-blur-sm">
-          <CardContent className="p-6">
-            <h2 className="text-white text-xl font-semibold mb-4">At a Glance</h2>
-            <ul className="space-y-3">
-              {quickFacts.map((fact, index) => (
-                <li key={index} className="flex items-start gap-3 text-[#888]">
-                  <span className="text-[#1ED760]">•</span>
-                  <span>{fact}</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      </motion.section>
 
       {/* Full Story */}
       <motion.section variants={itemVariants}>

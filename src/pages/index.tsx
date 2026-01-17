@@ -43,9 +43,9 @@ export default function Home() {
   };
 
   const proofBullets = [
-    "Built real-time dashboards + APIs in Spring Boot + React",
-    "iOS app (SwiftUI) w/ Supabase + AI screenshot identification",
-    "Shipping-focused: performance, RLS security, clean UX",
+    "Building production-grade software APIs in Spring Boot + React/TypeScript",
+    "Working on an iOS app (SwiftUI) w/ Supabase + AI screenshot identification",
+    "Full-time student at UNC Chapel Hill",
   ];
 
   const credentialCards = [
@@ -55,8 +55,8 @@ export default function Home() {
       icon: "💼",
     },
     {
-      title: "Teaching Assistant",
-      subtitle: "Modern Web Development",
+      title: "Undergraduate Research Assistant",
+      subtitle: "Starting research with Prof. Prasun Dewan",
       icon: "📚",
     },
   ];
@@ -78,8 +78,7 @@ export default function Home() {
                 Neel Joshi
               </h1>
               <p className="text-xl text-[#B3B3B3] leading-relaxed">
-                Full-stack engineer building high-polish web + iOS products with
-                AI.
+                Full-stack engineer building products with AI.
               </p>
             </div>
 
@@ -226,9 +225,8 @@ export default function Home() {
             </div>
             <div className="space-y-2 text-[#888] text-sm">
               <p>
-                → Building CineSense discovery feed + AI identification flow
+                → Building an AI agent with LangChain for CineSense chatbot functionality
               </p>
-              <p>→ Looking for Summer 2026 SWE internships</p>
             </div>
           </CardContent>
         </Card>
@@ -250,10 +248,8 @@ export default function Home() {
             <ul className="space-y-2 text-[#888] text-sm">
               <li>• UNC Chapel Hill, CS + Stats — Class of 2027</li>
               <li>
-                • Builder: iOS + web, AI features, real-time systems, clean UX
+                • Builder: iOS + Web, AI Integrations, Full-Stack Development
               </li>
-              <li>• Care deeply about performance + reliability</li>
-              <li>• Currently looking for Summer 2026 internships</li>
             </ul>
           </CardContent>
         </Card>
