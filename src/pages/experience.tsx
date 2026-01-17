@@ -94,6 +94,7 @@ interface ClassItem {
   name: string;
   semester: string;
   year: string;
+  learned?: string[];
 }
 
 const classes: ClassItem[] = [
@@ -102,74 +103,86 @@ const classes: ClassItem[] = [
     name: "Introduction to Programming",
     semester: "Fall",
     year: "2023",
+    learned: ["Python", "OOP", "Classes/Objects", "Functions", "Loops", "Variables", "Data Types"]
   },
-  { code: "MATH 381", name: "Discrete Math", semester: "Spring", year: "2024" },
+  { code: "MATH 381", name: "Discrete Math", semester: "Spring", year: "2024", learned: ["Proofs", "Set Theory", "Relations"]},
   {
     code: "COMP 210",
     name: "Data Structures and Algorithms",
     semester: "Spring",
     year: "2024",
+    learned: ["Java", "Data Structures", "Algorithms", "Sorting", "Searching", "Big-O Notation"]
   },
-  { code: "MATH 347", name: "Linear Algebra", semester: "Fall", year: "2024" },
+  { code: "MATH 347", name: "Linear Algebra", semester: "Fall", year: "2024", learned: ["Vectors", "Matrix Operations", "Eigenvalues"]},
   {
     code: "STOR 120",
     name: "Foundations of Statistics",
     semester: "Fall",
     year: "2024",
+    learned: ["Probability", "Statistics", "Python", "Pandas", "Matplotlib", "Numpy"]
   },
   {
     code: "COMP 301",
     name: "Design Patterns and OOP",
     semester: "Fall",
     year: "2024",
+    learned: ["Java", "OOP", "Design Patterns", "Testing"]
   },
   {
     code: "COMP 211",
     name: "Systems Fundamentals",
     semester: "Fall",
     year: "2024",
+    learned: ["C", "Operating Systems", "Memory Management", "Processes"]
   },
   {
     code: "COMP 433",
     name: "Mobile Development",
     semester: "Spring",
     year: "2025",
+    learned: ["Swift", "SwiftUI", "WidgetKit"]
   },
   {
     code: "COMP 426",
     name: "Modern Web Development",
     semester: "Spring",
     year: "2025",
+    learned: ["React", "Next.js", "TypeScript", "TailwindCSS", "Supabase"]
   },
   {
     code: "COMP 421",
     name: "Files and Databases",
     semester: "Spring",
     year: "2025",
+    learned: ["SQL", "ORMs", "Indexing", "ACID Properties"]
   },
   {
     code: "COMP 550",
     name: "Algorithms and Analysis",
     semester: "Spring",
     year: "2025",
+    learned: ["Graph Theory", "Dynamic Programming", "Greedy", "NP-Completeness", "Big-O Notation", "Trees"]
   },
   {
     code: "COMP 455",
     name: "Models of Languages and Computation",
     semester: "Fall",
     year: "2025",
+    learned: ["Automata", "Context-Free Languages", "Regular Expressions", "Pumping Lemma", "Turing Machines"]
   },
   {
     code: "COMP 311",
     name: "Computer Architecture",
     semester: "Fall",
     year: "2025",
+    learned: ["MIPS", "Assembly", "Caches", "Processor Scheduling", "Memory", "Circuits", "Digital Logic"]
   },
   {
     code: "MATH 233",
     name: "Multivariable Calculus",
     semester: "Fall",
     year: "2025",
+    learned: ["Vectors", "3-D Space, Regions, and Surfaces", "Partial Derivatives", "Double/Triple Integrals", "Vector Fields", "Line Integrals", "Surface Integrals"]
   },
   {
     code: "COMP 488",
@@ -376,11 +389,14 @@ export default function Experience() {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 p-2 overflow-visible">
                 {classes.map((classItem, index) => (
-                  <div
+                  <motion.div
                     key={index}
-                    className="p-3 rounded-lg bg-[#1a1a1a]/50 border border-[#1a1a1a]"
+                    whileHover={{ scale: 1.02, borderColor: "#1ED760" }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="p-3 rounded-lg bg-[#1a1a1a]/50 border border-[#1a1a1a] transition-all duration-300"
+                    style={{ transformOrigin: "center" }}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[#1ED760] font-mono text-xs">
@@ -390,8 +406,22 @@ export default function Experience() {
                         {classItem.semester} {classItem.year}
                       </span>
                     </div>
-                    <p className="text-white text-sm">{classItem.name}</p>
-                  </div>
+                    <p className="text-white text-sm mb-2">{classItem.name}</p>
+                    {classItem.learned && classItem.learned.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-[#282828]">
+                        <div className="flex flex-wrap gap-1.5">
+                          {classItem.learned.map((skill, skillIndex) => (
+                            <div
+                              key={skillIndex}
+                              className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-[#1ED760]/10 text-[#1ED760] border border-[#1ED760]/20 hover:border-[#1ED760]/40 transition-all duration-200 cursor-default"
+                            >
+                              {skill}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
