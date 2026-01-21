@@ -10,7 +10,7 @@ import {
   Check,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,6 +35,33 @@ const itemVariants = {
 
 export default function Home() {
   const [copied, setCopied] = useState(false);
+  const [commits, setCommits] = useState<string[]>([]);
+  const [commitsLoading, setCommitsLoading] = useState(true);
+  const [commitsError, setCommitsError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchCommits = async () => {
+      try {
+        const response = await fetch("/api/github");
+        const data = await response.json();
+        if (data.error) {
+          setCommitsError(data.error);
+        } else if (data.response?.length) {
+          const messages = data.response
+            .slice(0, 5)
+            .map((c: { commit: { message: string } }) =>
+              c.commit.message.split("\n")[0].trim()
+            );
+            setCommits(messages);
+          }
+        } catch (error) {
+          setCommitsError("Failed to fetch commits");
+        } finally {
+          setCommitsLoading(false);
+        }
+      };
+    fetchCommits();
+  }, [setCommits, setCommitsError, setCommitsLoading]);
 
   const copyEmail = () => {
     navigator.clipboard.writeText("nbjoshi@unc.edu");
@@ -259,6 +286,36 @@ export default function Home() {
                 • Builder: iOS + Web, AI Integrations, Full-Stack Development
               </li>
             </ul>
+          </CardContent>
+        </Card>
+      </motion.section>
+
+      {/* Recent Commits */}
+      <motion.section variants={itemVariants} className="py-8">
+        <Card className="bg-[#0a0a0a]/80 border-[#1a1a1a] backdrop-blur-sm">
+          <CardContent className="p-6">
+            <h2 className="text-white text-xl font-semibold mb-4">
+              Recent Commits
+            </h2>
+            {commitsLoading ? (
+              <p className="text-[#888] text-sm">Loading…</p>
+            ) : commitsError ? (
+              <p className="text-[#888] text-sm">{commitsError}</p>
+            ) : commits.length === 0 ? (
+              <p className="text-[#888] text-sm">No recent commits</p>
+            ) : (
+              <ul className="space-y-2">
+                {commits.map((msg, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start gap-3 text-[#888] text-sm"
+                  >
+                    <span className="text-[#1ED760]">→</span>
+                    <span className="leading-relaxed">{msg}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </CardContent>
         </Card>
       </motion.section>
