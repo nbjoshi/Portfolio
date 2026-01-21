@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // This ensures images from placeholder sites work
   images: {
     remotePatterns: [
       {

@@ -24,18 +24,18 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Create and set working directory
-RUN mkdir /workspace
+RUN mkdir /workspace && chown -R node:node /workspace
 WORKDIR /workspace
 
 # Copy all the files to the environment
-COPY . .
+COPY --chown=node:node . .
 
 # Expose port 3000 for the Next.js application
 EXPOSE 3000
 
 # Configure zsh shell and theme
-USER $USERNAME
-ENV HOME /home/$USERNAME
-RUN curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash - \
+USER node
+ENV HOME=/home/node
+RUN CHSH=no RUNZSH=no curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash - \
     && sed -i 's/robbyrussell/kennethreitz/g' ~/.zshrc \
     && echo 'export PATH=$PATH:$HOME/.local/bin' >>~/.zshrc

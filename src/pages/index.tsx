@@ -158,6 +158,14 @@ export default function Home() {
                   </>
                 )}
               </button>
+                           <Link
+                href="/Neel_Joshi_Resume.pdf"
+                target="_blank"
+                className="p-2 rounded-lg text-[#888] hover:text-white hover:bg-[#1a1a1a] transition-all flex items-center gap-2"
+              >
+                <FileText className="w-5 h-5" />
+                 Resume
+              </Link>
             </motion.div>
           </motion.div>
 

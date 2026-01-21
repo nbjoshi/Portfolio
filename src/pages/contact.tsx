@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Github, Linkedin, Mail, MapPin, Copy, Check } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Copy, Check, FileText } from "lucide-react";
 import { useState } from "react";
 
 const containerVariants = {
@@ -46,6 +46,12 @@ export default function Contact() {
       href: "https://linkedin.com/in/neelbjoshi",
       username: "neelbjoshi",
     },
+    {
+      icon: FileText,
+      label: "Resume",
+      href: "/Neel_Joshi_Resume.pdf",
+      username: "Neel Joshi Resume",
+    }
   ];
 
   return (
