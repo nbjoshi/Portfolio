@@ -24,7 +24,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Create and set working directory
-RUN mkdir /workspace
+RUN mkdir /workspace && chown -R node:node /workspace
 WORKDIR /workspace
 
 # Copy all the files to the environment
