@@ -48,6 +48,21 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: "2.5",
+    title: "HairEtc",
+    subtitle: "Salon Website for Client, HairEtc",
+    imageUrl: "/hair_etc.png",
+    repoUrl: "https://github.com/nbjoshi/hairetc",
+    liveUrl: "https://www.hairetc.salon/",
+    description:
+      "A website for a local hair salon, HairETC",
+    impact: [
+      "In Progress",
+    ],
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "ShadCN"],
+    featured: false,
+  },
+  {
     id: "3",
     title: "Minas Brows and Spa",
     subtitle: "Professional business website",
