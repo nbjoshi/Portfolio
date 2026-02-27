@@ -8,6 +8,7 @@ import {
   Mail,
   ChevronLeft,
   ChevronRight,
+  Book,
 } from "lucide-react";
 import { useSidebar } from "@/contexts/SidebarContext";
 import { Button } from "@/components/ui/button";
@@ -22,6 +23,7 @@ const Sidebar = () => {
     { icon: Briefcase, label: "Experience", href: "/experience" },
     { icon: User, label: "About", href: "/about" },
     { icon: Mail, label: "Contact", href: "/contact" },
+    { icon: Book, label: "Blog", href: "/blog" },
   ];
 
   return (

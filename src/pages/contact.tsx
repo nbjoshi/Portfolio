@@ -46,12 +46,12 @@ export default function Contact() {
       href: "https://linkedin.com/in/neelbjoshi",
       username: "neelbjoshi",
     },
-    {
-      icon: FileText,
-      label: "Resume",
-      href: "/Neel_Joshi_Resume.pdf",
-      username: "Neel Joshi Resume",
-    }
+    // {
+    //   icon: FileText,
+    //   label: "Resume",
+    //   href: "/Neel_Joshi_Resume.pdf",
+    //   username: "Neel Joshi Resume",
+    // }
   ];
 
   return (

@@ -50,16 +50,16 @@ export default function Home() {
           const messages = data.response
             .slice(0, 5)
             .map((c: { commit: { message: string } }) =>
-              c.commit.message.split("\n")[0].trim()
+              c.commit.message.split("\n")[0].trim(),
             );
-            setCommits(messages);
-          }
-        } catch (error) {
-          setCommitsError("Failed to fetch commits");
-        } finally {
-          setCommitsLoading(false);
+          setCommits(messages);
         }
-      };
+      } catch (error) {
+        setCommitsError("Failed to fetch commits");
+      } finally {
+        setCommitsLoading(false);
+      }
+    };
     fetchCommits();
   }, [setCommits, setCommitsError, setCommitsLoading]);
 
@@ -185,14 +185,14 @@ export default function Home() {
                   </>
                 )}
               </button>
-                           <Link
+              {/* <Link
                 href="/Neel_Joshi_Resume.pdf"
                 target="_blank"
                 className="p-2 rounded-lg text-[#888] hover:text-white hover:bg-[#1a1a1a] transition-all flex items-center gap-2"
               >
                 <FileText className="w-5 h-5" />
                  Resume
-              </Link>
+              </Link> */}
             </motion.div>
           </motion.div>
 
@@ -260,7 +260,8 @@ export default function Home() {
             </div>
             <div className="space-y-2 text-[#888] text-sm">
               <p>
-                → Building an AI agent with LangChain for CineSense chatbot functionality
+                → Building an AI agent with LangChain for CineSense chatbot
+                functionality
               </p>
             </div>
           </CardContent>
